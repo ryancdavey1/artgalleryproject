@@ -1,11 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  #loading signup form
-  def new
-  end
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
 
-  #sign up the user
-  def create
-  end
 end
