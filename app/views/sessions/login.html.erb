@@ -1,9 +1,9 @@
 <h1>log in here</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for @user, url: '/login' do |f| %>
   <%= f.label :email %>
   <%= f.email_field :email %>
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <%= f.submit "login in" %>
+  <%= f.submit "log in" %>
 <% end %>
