@@ -1,3 +1,5 @@
-<h1>welcome to your home page, <%= @user.name %.></h1>
+<h1>welcome to your home page, <%= @user.name %></h1>
 
-<%= link_to 'log out', logout_path method: :delete%> 
+<h2>here are your produced artworks:</h2>
+<>
+  <%= button_to "log out", logout_path, method: "delete" %>
