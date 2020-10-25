@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :artworks, through: :bids
   has_many :produced_artworks, foreign_key: :artist_id, class_name: 'Artwork'
 
-  validates :name, presence: true
-  validates :email, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true
 end
