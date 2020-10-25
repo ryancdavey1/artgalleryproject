@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bids
+  resources :artworks
   root 'sessions#home'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
