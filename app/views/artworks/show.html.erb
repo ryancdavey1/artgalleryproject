@@ -1,1 +1,23 @@
 <%= image_tag("starry_night.png") %>
+
+<h1><%= @artwork.name%></h1>
+<h3><%= @artwork.description %></h3>
+<h3>$<%= @artwork.price %></h3>
+<h3><%= @artwork.category %></h3>
+<br>
+
+<h1>current bids</h1>
+<%= form_for @bid do |f| %>
+  <%= f.label :price, "price in dollars($)" %><br>
+  <%= f.number_field :price, class: "form-control" %>
+  <%= f.hidden_field :user_id %><br />
+  <%= f.hidden_field :artwork_id %><br />
+  <%= f.submit "create a new bid on this artwork", class:"btn btn-light" %>
+<% end %>
+<br>
+<% @artwork.bids.each do |bid| %>
+  <h2>customer: <%# bid.user.name%></h2>
+  <h2>amount: $<%= bid.artwork.price %></h2>
+  <br>
+<% end %>
+

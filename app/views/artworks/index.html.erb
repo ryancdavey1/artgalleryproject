@@ -1,10 +1,7 @@
-<tbody>
-    <% @artworks.each do |artwork| %>
+<% @artworks.each do |artwork| %>
       <h1><%= link_to "#{artwork.name}", artwork_path(artwork) %></h1>
       <h3><%= artwork.description %></h3>
       <h3>$<%= artwork.price %></h3>
       <h3><%= artwork.category %></h3>
       <br>
-    <% end %>
-  </tbody>
-</table>
+<% end %>

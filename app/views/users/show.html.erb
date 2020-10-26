@@ -1,7 +1,20 @@
 <h1>welcome to your home page, <%= @user.name %></h1>
 
-<h2>here are your produced artworks:</h2>
+<h2>here are your produced artworks</h2>
+<h4><%= link_to 'create a new artwork', new_artwork_path %></h4>
+<% @user.produced_artworks.each do |artwork| %>
+  <h1><%= link_to "#{artwork.name}", artwork_path(artwork) %></h1>
+  <h3><%= artwork.description %></h3>
+  <h3>$<%= artwork.price %></h3>
+  <h3><%= artwork.category %></h3>
+  <br>
+<% end %>
 
-<h2>here are your bids on current artworks:</h2>
+<h2>here are your bids on current artworks</h2>
+<% @user.bids.each do |bid| %>
+  <h1><%= link_to "#{bid.artwork.name}", artwork_path(bid.artwork) %></h1>
+  <h3>$<%= bid.artwork.price %></h3>
+  <br>
+<% end %>
 
-  <%= button_to "log out", logout_path, method: "delete" %>
+<%= button_to "log out", logout_path, method: "delete" %>

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  #skip_before_action :verified_user, only: [:new, :create]
   def new
     @user = User.new
     render :login
@@ -8,6 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:user][:email])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
+      current_user = @user
       redirect_to user_path(@user)
     else
       #flash[:danger] = 'Invalid email/password combination'
@@ -20,6 +22,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
+    #current_user = nil
     redirect_to '/'
   end
 
