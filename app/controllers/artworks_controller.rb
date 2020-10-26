@@ -7,7 +7,11 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find_by(id: params[:id])
     #@bid = Bid.new(artwork_id: @artwork.id)
     # @bid = @artowkr.bids.build(user_id: current_user.id, )
-    @bid = @artwork.bids.build(artwork_id: @artwork.id )
+    if !@artwork
+      redirect_to artworks_path
+    else
+      @bid = @artwork.bids.build(artwork_id: @artwork.id )
+    end
   end
 
   def new
