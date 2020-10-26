@@ -5,8 +5,6 @@ class ArtworksController < ApplicationController
 
   def show
     @artwork = Artwork.find_by(id: params[:id])
-    #@bid = Bid.new(artwork_id: @artwork.id)
-    # @bid = @artowkr.bids.build(user_id: current_user.id, )
     if !@artwork
       redirect_to artworks_path
     else
@@ -16,6 +14,28 @@ class ArtworksController < ApplicationController
 
   def new
     @artwork = Artwork.new
+  end
+
+  def edit
+    @artwork = Artwork.find_by(id: params[:id])
+    if !@artwork
+      redirect_to artworks_path
+    end
+  end
+
+  def update
+    @artwork = Artwork.find_by(id: params[:id])
+    if !@artwork
+      redirect_to artworks_path
+    end
+
+    if @artwork.update(artwork_params)
+      redirect_to artwork_path(@artwork)
+    else
+      render :edit
+    end
+
+    
   end
 
   def create
