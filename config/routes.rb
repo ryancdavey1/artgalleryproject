@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   #get '/artworks', to: 'artworks#index', as: 'artworks'
   #get 
-  
-  resources :artworks do 
-    resources :bids
-  end
+  get '/artworks/:id/bids/new' => 'bids#new'
+  resources :artworks 
+  resources :bids
+   
   resources :sessions
   resources :users
 end

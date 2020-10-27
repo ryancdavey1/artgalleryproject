@@ -10,10 +10,14 @@ class BidsController < ApplicationController
 
   def new
     if params[:artwork_id] && @artwork = Artwork.find_by(params[:artwork_id]) 
-      @bid = 
+      @bid = @artwork.bids.build
     else
       redirect_to artworks_path
     end
+  end
+
+  def index
+    @bids = Bid.all
   end
 
   private
