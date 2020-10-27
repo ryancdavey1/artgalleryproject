@@ -34,19 +34,28 @@ class ArtworksController < ApplicationController
     else
       render :edit
     end
+  end
 
+  def destroy
+    @artwork = Artwork.find_by(id: params[:id])
     
+    if !@artwork
+      redirect_to artworks_path
+    end
+    @artwork.destroy
+    redirect_to artworks_path
+
   end
 
   def create
-    @artwork = Artwork.new(artwork_params)
-    @artwork.artist_id = current_user.id
+    @artwork = current_user.produced_artworks.build(artwork_params)
+    
     if @artwork.save
       redirect_to artworks_path
     else
       render :new
     end
-  end
+  end 
 
   private
     def artwork_params

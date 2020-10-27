@@ -6,6 +6,9 @@
 <h3><%= @artwork.category %></h3>
 <br>
 
+<%= link_to 'edit artwork', edit_artwork_path(@artwork) %>
+<%= link_to 'delete artwork', artwork_path(@artwork), method: :delete%>
+
 <h1>current bids</h1>
 <%= form_for @bid do |f| %>
   <%= f.label :price, "price in dollars($)" %><br>
