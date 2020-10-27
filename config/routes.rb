@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #get '/artworks', to: 'artworks#index', as: 'artworks'
   #get 
   get '/artworks/:id/bids/new' => 'bids#new'
+  get '/auth/:provider/callback' => 'sessions#create'
+
   resources :artworks 
   resources :bids
    

@@ -1,4 +1,6 @@
 class ArtworksController < ApplicationController
+  before_action :check_for_logged_in, except: [:index]
+
   def index
     @artworks = Artwork.all
   end
