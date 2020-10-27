@@ -8,7 +8,8 @@ class ArtworksController < ApplicationController
     if !@artwork
       redirect_to artworks_path
     else
-      @bid = @artwork.bids.build(artwork_id: @artwork.id )
+      #redirect_to artwork_path(@artwork)
+      #@bid = @artwork.bids.build(user_id: current_user.id)
     end
   end
 

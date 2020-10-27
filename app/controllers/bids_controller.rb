@@ -8,6 +8,14 @@ class BidsController < ApplicationController
     #redirect_to user_path
   end
 
+  def new
+    if params[:artwork_id] && @artwork = Artwork.find_by(params[:artwork_id]) 
+      @bid = 
+    else
+      redirect_to artworks_path
+    end
+  end
+
   private
 
   def bid_params

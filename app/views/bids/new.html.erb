@@ -1,8 +1,1 @@
-<%= form_for @bid do |f| %>
-  <%= f.label :price, "price in dollars($)" %><br>
-  <%= f.number_field :price, class: "form-control" %>
-  <%= f.hidden_field :user_id %><br />
-  <%= f.hidden_field :artwork_id %><br />
-  <%= f.submit "create a new bid on this artwork", class:"btn btn-light" %>
-<% end %>
-<br>
+<%= render 'form' %> 
