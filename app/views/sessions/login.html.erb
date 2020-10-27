@@ -1,6 +1,13 @@
 <h1>log in here</h1>
 
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
 <%= form_for @user, url: '/login' do |f| %>
+
   <%= f.label :email %>
   <%= f.email_field :email %>
   <%= f.label :password %>
