@@ -13,7 +13,7 @@
 <h2>here are your bids on current artworks</h2>
 <% @user.bids.each do |bid| %>
   <h1><%= link_to "#{bid.artwork.name}", artwork_path(bid.artwork) %></h1>
-  <h3>$<%= bid.artwork.price %></h3>
+  <h3>$<%= bid.price %></h3>
   <br>
 <% end %>
 

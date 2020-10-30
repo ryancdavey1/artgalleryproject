@@ -10,12 +10,12 @@
 <%= link_to 'delete artwork', artwork_path(@artwork), method: :delete%>
 
 <h1>current bids</h1>
-  <%# link_to 'create new bid', artwork_bid_path(@bid) %>
+  <%= link_to 'create new bid', new_bid_path(@bid) %>
 <br>
 
 <% @artwork.bids.each do |bid| %>
   <h2>customer: <%= bid.user.name%></h2>
-  <h2>amount: $<%= bid.artwork.price %></h2>
+  <h2>amount: $<%= bid.price %></h2>
   <br>
 <% end %>
 

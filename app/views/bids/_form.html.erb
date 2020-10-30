@@ -1,10 +1,10 @@
 <%= form_for @bid do |f| %>
 
   <%= render partial: 'layouts/errors', locals: {object: @bid} %>
-
+  
   <%= f.label :price, "price in dollars($)" %><br>
-  <%= f.number_field :price, class: "form-control" %>
-  <%= f.hidden_field :user_id %><br />
-  <%= f.hidden_field :artwork_id %><br />
+  <%= f.number_field :price, class: "form-control" %><br>
+  <%= f.hidden_field :user_id %><br><br>
+  <%= f.collection_select :artwork_id, Artwork.all, :id, :name%><br><br>
   <%= f.submit "bid on this artwork", class:"btn btn-light" %>
 <% end %>
