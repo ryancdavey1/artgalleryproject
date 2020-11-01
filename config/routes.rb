@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #get '/artworks', to: 'artworks#index', as: 'artworks'
   #get 
   get '/artworks/:id/bids/new' => 'bids#new'
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/github/callback' => 'sessions#github'
 
   resources :bids
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :bids
   end
   
-  #resources :sessions
+  resources :sessions
   resources :users do
     resources :bids
   end

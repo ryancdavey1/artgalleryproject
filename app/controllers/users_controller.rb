@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :verified_user, except: [:index]
+  before_action :verified_user
 
   #loading signup form
   def new

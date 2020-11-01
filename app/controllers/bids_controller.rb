@@ -14,6 +14,10 @@ class BidsController < ApplicationController
     
   end
 
+  def self.most_bids
+
+  end
+
   def new
     # if params[:artwork_id] && @artwork = Artwork.find_by(params[:artwork_id]) 
     #   @bid = @artwork.bids.build

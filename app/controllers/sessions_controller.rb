@@ -6,36 +6,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    #raise auth_hash.inspect
-    # if auth_hash = request.env["omniauth.auth"]
-    #   #raise auth_hash.inspect
-    #   oauth_email = auth_hash["info"]["email"]
-    #   if oauth_email == nil
-    #     oauth_email = "#{auth_hash["info"]["nickname"]}@gmail.com" 
-    #   end
-    #   oauth_name = auth_hash["info"]["nickname"]
-    #   if user = User.find_by(:email => oauth_email)
-    #     session[:user_id] = user.id
-    #   else
-    #     user = User.new(:name => oauth_name, :email => oauth_email, :password => 1234)
-    #     if user.save
-    #       session[:user_id] = user.id
-    #       redirect_to root_path
-    #     else
-    #       raise user.errors.full_messages.inspect
-    #     end
-    #   end
-    # else
+
       user = User.find_by(email: params[:user][:email])
       if user && user.authenticate(params[:user][:password])
         session[:user_id] = user.id
-        #current_user = user
         redirect_to user_path(user)
       else
         flash[:error] = "Sorry, your username or password was incorrect"
         redirect_to '/login'
       end
-    #end
+ 
 
   end
 
@@ -48,10 +28,35 @@ class SessionsController < ApplicationController
     redirect_to '/'
   end
 
+  def github
+    # puts auth.inspect
+    # raise auth.inspect
+    oauth_email = auth["info"]["email"]
+    if oauth_email == nil
+      oauth_email = "#{auth["info"]["nickname"]}@gmail.com" 
+    end
+    oauth_name = auth["info"]["nickname"]
+    @user = User.find_or_create_by(email: oauth_email)
+    if @user
+      #if user is exist then find the user by email by the returned hash 
+      #then set the user attibutes
+      @user.name = auth["info"]["name"]
+      @user.password = SecureRandom.hex() 
+    end  
+      #if the user is saved, then we'll set the session[:user_id] = @user.id
+    if @user.persisted?
+          session[:user_id] = @user.id
+          redirect_to user_path(@user)
+    else
+          #if user isn't saved then redirect_to root_path
+          redirect_to '/'
+    end
+  end
+
   private
 
   def auth
     request.env['omniauth.auth']
   end
-  
+
 end
