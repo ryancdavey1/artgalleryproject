@@ -15,7 +15,7 @@ class BidsController < ApplicationController
   end
 
   def self.most_bids
-
+    
   end
 
   def new

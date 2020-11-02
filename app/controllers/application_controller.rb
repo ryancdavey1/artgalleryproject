@@ -1,10 +1,13 @@
 class ApplicationController < ActionController::Base
-  #before_action :verified_user
-  helper_method :current_user, :verified_user, :user_is_authenticated
+  protect_from_forgery with: :exception
+  #before_action 
+  helper_method :current_user
+  helper_method :user_is_authenticated
 
   private
+
   def verified_user
-    redirect_to 'sessions#home' if !user_is_authenticated
+    redirect_to 'sessions#home' unless user_is_authenticated
   end
 
   def user_is_authenticated
