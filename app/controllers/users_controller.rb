@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :verified_user, only:[:show]
+  skip_before_action :redirect_if_not_logged_in, only:[:new]
 
   #loading signup form
   def new
@@ -19,10 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    if !logged_in?
-      redirect_to '/' 
-    elsif @user.id != current_user.id
-       redirect_to user_path(current_user)
+    if @user.id != current_user.id
+      redirect_to user_path(current_user)
     end
   end
 

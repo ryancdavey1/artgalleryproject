@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  #skip_before_action :verified_user, only: [:index]
+  skip_before_action :redirect_if_not_logged_in, only:[:index]
 
   def index
     @artworks = Artwork.all
@@ -9,9 +9,6 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find_by(id: params[:id])
     if !@artwork
       redirect_to artworks_path
-    else
-      #redirect_to artwork_path(@artwork)
-      #@bid = @artwork.bids.build(user_id: current_user.id)
     end
   end
 

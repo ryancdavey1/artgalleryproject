@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  helper_method :logged_in?
+  before_action :redirect_if_not_logged_in
   #helper_method :user_is_authenticated
 
   private
 
   def redirect_if_not_logged_in
-    redirect_to '/' if verified_user
+    if !logged_in?
+      #flash[:error] = "You must be logged in to see this page!"
+      redirect_to '/' 
+    end
   end
 
   def logged_in?
