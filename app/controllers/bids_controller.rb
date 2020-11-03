@@ -1,5 +1,5 @@
 class BidsController < ApplicationController
-  skip_before_action :redirect_if_not_logged_in, only:[:most_bids]
+  #skip_before_action :redirect_if_not_logged_in, only:[:most_bids]
 
   def create
     @bid = current_user.bids.build(bid_params)
@@ -8,10 +8,6 @@ class BidsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def self.most_bids
-    @artworks = Artowkr.all.sort_by{|artwork| -artwork.bids.count}
   end
 
   def new

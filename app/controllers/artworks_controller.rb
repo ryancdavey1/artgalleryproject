@@ -57,6 +57,11 @@ class ArtworksController < ApplicationController
     end
   end 
 
+  def most_bids
+    @artworks = Artwork.most_bids
+  end
+
+  
   private
     def artwork_params
       params.require(:artwork).permit(

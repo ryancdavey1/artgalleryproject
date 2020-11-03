@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/artworks/:id/bids/new' => 'bids#new'
   get '/auth/github/callback' => 'sessions#github'
-  #get '/most_bids' => 'bids#most_bids'
+  get 'artworks/most_bids' => 'artworks#most_bids'
 
   resources :bids
 
