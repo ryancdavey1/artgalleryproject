@@ -15,7 +15,7 @@ class BidsController < ApplicationController
   end
 
   def self.most_bids
-    
+    @artworks = Artowkr.all.sort_by{|artwork| -artwork.bids.count}
   end
 
   def new

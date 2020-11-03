@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  before_action :verified_user, except: [:index]
+  #skip_before_action :verified_user, only: [:index]
 
   def index
     @artworks = Artwork.all
