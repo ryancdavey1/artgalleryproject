@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
   end
 
   def create
+      #raise params.inspect
       user = User.find_by(email: params[:user][:email])
-      
+      #byebug
       if user && user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         redirect_to user_path(user)

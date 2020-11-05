@@ -5,9 +5,10 @@
 <h3>$<%= @artwork.price %></h3>
 <h3><%= @artwork.category %></h3>
 <br>
-
-<%= link_to 'edit artwork', edit_artwork_path(@artwork) %>
-<%= link_to 'delete artwork', artwork_path(@artwork), method: :delete%>
+<%  if @artwork.artist_id == current_user.id %>
+  <%= link_to 'edit artwork', edit_artwork_path(@artwork) %>
+  <%= link_to 'delete artwork', artwork_path(@artwork), method: :delete%>
+<% end%>
 
 <h1>current bids</h1>
   <%= link_to 'create new bid', new_bid_path(@bid) %>
