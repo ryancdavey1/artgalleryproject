@@ -8,9 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-      #raise params.inspect
       user = User.find_by(email: params[:user][:email])
-      #byebug
       if user && user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         redirect_to user_path(user)
@@ -25,13 +23,10 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    #current_user = nil
     redirect_to '/'
   end
 
   def github
-    # puts auth.inspect
-    # raise auth.inspect
     oauth_email = auth["info"]["email"]
     if oauth_email == nil
       oauth_email = "#{auth["info"]["nickname"]}@gmail.com" 
@@ -39,18 +34,14 @@ class SessionsController < ApplicationController
     oauth_name = auth["info"]["nickname"]
     @user = User.find_or_create_by(email: oauth_email)
     if @user
-      #if user is exist then find the user by email by the returned hash 
-      #then set the user attibutes
       @user.name = auth["info"]["name"]
       @user.password = SecureRandom.hex() 
     end  
-      #if the user is saved, then we'll set the session[:user_id] = @user.id
     if @user.persisted?
-          session[:user_id] = @user.id
-          redirect_to user_path(@user)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
     else
-          #if user isn't saved then redirect_to root_path
-          redirect_to '/'
+      redirect_to '/'
     end
   end
 
