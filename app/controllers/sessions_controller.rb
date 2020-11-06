@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   #before_action :verified_user, except: [:new, :create]
-  skip_before_action :redirect_if_not_logged_in, only: [:new, :create, :home]
+  skip_before_action :redirect_if_not_logged_in, only: [:new, :create, :home, :github]
 
   def new
     @user = User.new
@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def github
+    #raise auth.inspect
     oauth_email = auth["info"]["email"]
     if oauth_email == nil
       oauth_email = "#{auth["info"]["nickname"]}@gmail.com" 
