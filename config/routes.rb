@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  get '/artworks/:id/bids/new' => 'bids#new'
+  #get '/artworks/:id/bids/new' => 'bids#new'
   get '/auth/github/callback' => 'sessions#github'
   get 'artworks/most_bids' => 'artworks#most_bids'
 

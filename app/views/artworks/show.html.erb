@@ -11,7 +11,7 @@
 <% end%>
 
 <h1>current bids</h1>
-  <%= link_to 'create new bid', new_bid_path(@bid) %>
+  <%= link_to 'create new bid', new_artwork_bid_path(@artwork) %>
 <br>
 
 <% @artwork.bids.each do |bid| %>

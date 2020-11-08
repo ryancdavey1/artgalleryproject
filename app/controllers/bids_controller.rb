@@ -13,10 +13,12 @@ class BidsController < ApplicationController
   def new
     @bid = Bid.new
     @bid.user_id = current_user.id
+    #@bid.artwork_id = params[:artwork_id]
   end
 
   def index
-    @bids = Bid.all
+    @user = User.find_by(id: params[:user_id])
+    @bids = @user.received_bids
   end
 
   private

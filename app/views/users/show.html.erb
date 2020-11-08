@@ -1,5 +1,5 @@
 <h1>welcome to your home page, <%= @user.name %></h1>
-
+<%= link_to 'received bids', user_bids_path(@user) %>
 <h2>here are your produced artworks</h2>
 <h4><%= link_to 'create a new artwork', new_artwork_path %></h4>
 <% @user.produced_artworks.each do |artwork| %>
