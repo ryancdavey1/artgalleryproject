@@ -4,11 +4,14 @@ class Artwork < ApplicationRecord
 
   validates :name, :price, presence: true
 
-  # counter -> add to belongs_to
+  # counter -> add to belongs_to DONE 
   #return active method relation
   # artist_id -> most bids by user/artist (accepting that artist_id)
-  # in migration -> add bid_count column
+  # in migration -> add bid_count column DONE 
   def self.most_bids
-    return Artwork.all.sort_by{|artwork| -artwork.bids.count}
+    @artworks = Artwork.
+      joins(:bids).
+      select("artworks.*", 'COUNT("bids.id") AS bids_count').
+      group('artworks.id')
   end
 end
