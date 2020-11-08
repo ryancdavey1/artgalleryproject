@@ -1,6 +1,6 @@
 class Bid < ApplicationRecord
   belongs_to :user
-  belongs_to :artwork
+  belongs_to :artwork, counter_cache: true
 
   validates :price, presence: true
 
