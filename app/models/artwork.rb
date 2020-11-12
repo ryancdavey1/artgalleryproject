@@ -10,8 +10,10 @@ class Artwork < ApplicationRecord
   # in migration -> add bid_count column DONE 
   def self.most_bids
     @artworks = Artwork.
-      joins(:bids).
-      select("artworks.*", 'COUNT("bids.id") AS bids_count').
-      group('artworks.id')
+      #joins(:bids).
+      #select("artworks.*", 'COUNT("bids.id") AS bids_count').
+      #select("artworks.*")
+      order(bids_count: :desc)
+      #group('artworks.id')
   end
 end
